@@ -1,15 +1,6 @@
 package com.LockedMe.client;
 
-//import java.util.InputMismatchException;
-//import java.util.Scanner;
-//
 import com.LockedMe.domain.User;
-//
-//import java.io.BufferedReader;
-//import java.io.FileReader;
-//import java.io.BufferedWriter;
-//import java.io.FileNotFoundException;
-//import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 
