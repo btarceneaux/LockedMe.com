@@ -49,8 +49,9 @@ public class User
         System.out.println("");
     }
     
-    
-    public int getUserInput() throws NumberFormatException, IOException
+    // The "contextType" parameter is being used to limit the valid values between the 
+    // main menu and the sub menu.
+    public int getUserInput(char parmContextType) throws NumberFormatException, IOException
     {   
         boolean invalid = true;
         
@@ -61,7 +62,10 @@ public class User
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 userInput = Integer.parseInt(br.readLine());
                 
-                if ((userInput == 1) || (userInput == 2) || userInput == 3)
+                // 1, 2 and 3 are valid for the main menu, while 1, 2, 3 and 4 are valid for the sub menu.
+                if ( (((userInput == 1) || (userInput == 2) || userInput == 3) && (parmContextType == 'M')) 
+                        || ((userInput == 1) || (userInput == 2) || (userInput == 3) || (userInput == 4)) 
+                        && parmContextType == 'S')
                 {
                     invalid = false;
                 }
@@ -104,5 +108,15 @@ public class User
         {
             System.out.println("Document working directory already exists.\n");
         }
+    }
+    
+    public void displayUserInteractionInformation()
+    {
+        System.out.println("    ------------------------ User Options --------------------------");
+        System.out.println("    | Enter '1' to add a file to the existing directory list.       |");
+        System.out.println("    | Enter '2' to delete a file from the existing directory.       |");
+        System.out.println("    | Enter '3' to search for a file from the main directory.       |");
+        System.out.println("    | Enter '4' to navigate back to the main menu.                  |");
+        System.out.println("    ----------------------------------------------------------------");
     }
 }
