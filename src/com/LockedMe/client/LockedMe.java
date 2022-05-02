@@ -4,7 +4,6 @@ import com.LockedMe.domain.User;
 import java.io.IOException;
 import java.io.File;
 
-
 public class LockedMe
 {
 
