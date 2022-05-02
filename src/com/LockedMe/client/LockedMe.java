@@ -21,7 +21,8 @@ public class LockedMe
         
         // Display user options
         myUser.displayUserOptions();
-        int userOption = myUser.getUserInput();
+        
+        int userOption = myUser.getUserInput('M');
         
         //File f = new File(".");
         File f = new File("./LockedMe_documents");
@@ -33,13 +34,12 @@ public class LockedMe
             {
                 myUser.displayFilesInDirectory(f);
                 myUser.displayUserOptions();
-                userOption = myUser.getUserInput();
+                userOption = myUser.getUserInput('M');
             }
             else if (userOption == 2)
             {
-                System.out.println("I haven't coded for the other option yet.");
-                myUser.displayUserOptions();
-                userOption = myUser.getUserInput();
+                myUser.displayUserInteractionInformation();
+                userOption = myUser.getUserInput('S');
             }
             else
             {
