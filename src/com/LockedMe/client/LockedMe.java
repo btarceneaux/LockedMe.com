@@ -1,12 +1,15 @@
 package com.LockedMe.client;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
+//import java.util.InputMismatchException;
+//import java.util.Scanner;
+//
+import com.LockedMe.domain.User;
+//
+//import java.io.BufferedReader;
+//import java.io.FileReader;
+//import java.io.BufferedWriter;
+//import java.io.FileNotFoundException;
+//import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 
@@ -23,58 +26,35 @@ public class LockedMe
         System.out.println("Developer Title : Java Full Stack Developer\n");
         System.out.println("*********************************************\n");
         
-        // Set up a directory in which every file will be added to.
-        createUserDirectory();
+        // Create a new user object
+        User myUser = new User();
         
-        int userInput = 0;
-        do
+        // Display user options
+        myUser.displayUserOptions();
+        int userOption = myUser.getUserInput();
+        
+        //File f = new File(".");
+        File f = new File("./LockedMe_documents");
+        
+        while(userOption != 3)
         {
-            displayUserOptions();
-            
-            do 
+            //User choices
+            if (userOption == 1)
             {
-                try(Scanner keyboard = new Scanner(System.in)) 
-                {
-                    userInput = keyboard.nextInt();   
-                }
-                catch(InputMismatchException e)
-                {
-                    System.out.println("Your input is invalid! Please enter an integer between 1 and 3." + e);
-                }
-            }while (userInput != 1 && userInput != 2 && userInput != 3);
-            
-            
-            if (userInput == 1)
-            {
-                
+                myUser.displayFilesInDirectory(f);
+                myUser.displayUserOptions();
+                userOption = myUser.getUserInput();
             }
-             
-                           
-        }while (userInput != 3);
-        
-    }
-    
-    
-    public static void displayUserOptions()
-    {
-        System.out.println("Please enter '1' to return the current file names in ascending order. : \n");
-        System.out.println("Please enter '2' to see all of the file and directory options. : \n");
-        System.out.print("Please enter '3' to quit the application : ");
-    }
-    
-    public static void createUserDirectory()
-    {
-        // Create the directory where the files will exist.
-        File myDirectory = new File("LockedMe_documents");
-        
-        if (myDirectory.mkdir() ) 
-        {
-            System.out.println("The directory is created");
-        }
-        else 
-        {
-            System.out.println("Document working directory already exists.\n");
+            else if (userOption == 2)
+            {
+                System.out.println("I haven't coded for the other option yet.");
+                myUser.displayUserOptions();
+                userOption = myUser.getUserInput();
+            }
+            else
+            {
+                System.out.println("Now exiting program.\n\n");
+            }
         }
     }
-
 }
