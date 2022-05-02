@@ -9,7 +9,6 @@ import java.util.ListIterator;
 
 public class User
 {
-    
 //    private String[] files;
     private int userInput;
     
@@ -47,7 +46,7 @@ public class User
             System.out.println(iterator.next());
         }
         
-        System.out.println("\n");
+        System.out.println("");
     }
     
     
