@@ -227,6 +227,41 @@ public class User
         }
     }
     
+    public void deleteUserSpecifiedFile()
+    {
+        String inputString = "";
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        try
+        {
+            inputString = br.readLine();
+        } 
+        catch (IOException e)
+        {
+            System.out.println("An exception has occured. : " + e);
+        }
+        
+        if(inputString.length() != 0)
+        {
+            String fullPath = ("LockedMe_documents" + "/" + inputString);
+            File f = new File(fullPath);
+            
+            // Check to see if the file exists before deleting it.
+            if(f.exists())
+            {
+                String fileName = f.getName();
+                if(f.delete())
+                {
+                    System.out.println("File " + fileName + " has successfully been deleted.");
+                }
+            }
+            else
+            {
+                System.out.println("File not found");
+            }
+        }   
+    }
+    
     // This method will get the input for the file name
     public String getFullPathOfFile() throws IOException
     {

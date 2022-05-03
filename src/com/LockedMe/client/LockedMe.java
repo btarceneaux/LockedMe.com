@@ -53,6 +53,11 @@ public class LockedMe
                         myUser.addFileToExistingDirectory(fullPathOfFile, directoryLocation);
    
                     }
+                    else if (userOption == 2)
+                    {
+                        System.out.println("Please enter the name of the file you want to delete : ");
+                        myUser.deleteUserSpecifiedFile();
+                    }
                     else if (userOption == 4)
                     {
                         userInputOption = 'M';
