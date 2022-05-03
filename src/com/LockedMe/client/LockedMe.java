@@ -51,14 +51,14 @@ public class LockedMe
                         String fullPathOfFile = myUser.getFullPathOfFile();
                         
                         myUser.addFileToExistingDirectory(fullPathOfFile, directoryLocation);
-                        
-                        myUser.displayUserInteractionInformation();
-                        userOption = myUser.getUserInput(userInputOption);
-                        
-                        if (userOption == 4)
-                        {
-                            userInputOption = 'M';
-                        }
+   
+                    }
+                    else if (userOption == 4)
+                    {
+                        userInputOption = 'M';
+                        System.out.println("You entered 4");
+                        myUser.displayUserOptions();
+                        userOption = myUser.getUserInput('M');
                     }
                     
                 }while(userInputOption == 'S');

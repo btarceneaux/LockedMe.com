@@ -27,6 +27,18 @@ public class User
         createUserDirectory(workingDirectory);
     }
     
+    
+    private String[] getFilesInDirectory(File parmFileDirecotry)
+    {
+        String directoryList = parmFileDirecotry.getParent();
+        
+        File f = new File(directoryList);
+        String[] tempFiles = f.list();
+        
+        return tempFiles;
+    }
+    
+    
     public void displayFilesInDirectory(File parmFile)
     {
         String[] tempFiles = parmFile.list(null);
@@ -133,10 +145,11 @@ public class User
     }
     
     
-    // This helper method will return the file name without the direcory information.
+    // This helper method will return the file name without the directory information.
     private String getFileNameFromFullPath(String parmFullFilePath)
     {
         File f = new File(parmFullFilePath);
+        
         return f.getName();
     }
     
@@ -145,7 +158,7 @@ public class User
     private boolean checkIfFileExists(String parmDirectoryToFile)
     {
         File f = new File(parmDirectoryToFile);
-        return !f.exists();
+        return f.exists();
     }
     
     
@@ -154,10 +167,35 @@ public class User
     {
         String fullDirectoryLocation = (parmDirectoryLocation + "/");
         String fileName = getFileNameFromFullPath(parmFullPathToFile);
+        boolean fileExistsOnFileSystem = false;
+        
+        //If the file entered is not the correct case, correct it for them. 
+        if(checkIfFileExists(parmFullPathToFile) == false)
+        {
+            File f = new File(parmFullPathToFile);
+            String tempName = f.getName();
+            String[] fileDirectory = getFilesInDirectory(f);
+            
+            //loop through the directory list of files
+            for(int i = 0; i < fileDirectory.length; i++)
+            {
+                if(tempName.equalsIgnoreCase(fileDirectory[i]))
+                {
+                    fileName = fileDirectory[i];
+                    fileExistsOnFileSystem = true;
+                }
+            }
+        }     
+        if(checkIfFileExists(parmFullPathToFile))
+        {
+            fileExistsOnFileSystem = true;
+        }
+        
+        //Check to see if the user type
         String newFilePath = (fullDirectoryLocation + fileName);
         
         // We only want to add the file if it is not already in the directory.
-        if(checkIfFileExists(newFilePath))
+        if(!checkIfFileExists(newFilePath) && fileExistsOnFileSystem == true)
         {
             try (BufferedReader bufInput = new BufferedReader(new FileReader(parmFullPathToFile));
                     BufferedWriter bufOutput = new BufferedWriter(new FileWriter(newFilePath)))
@@ -178,6 +216,10 @@ public class User
                {
                    System.out.println("IOException: " + e);
                }
+        }
+        else if (fileExistsOnFileSystem == false)
+        {
+            System.out.println("The file does not exist on the file system!");
         }
         else
         {
