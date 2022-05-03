@@ -21,13 +21,14 @@ public class LockedMe
         
         // Display user options
         myUser.displayUserOptions();
+        char userInputOption = 'M';
         
-        int userOption = myUser.getUserInput('M');
+        int userOption = myUser.getUserInput(userInputOption);
         
-        //File f = new File(".");
+        String directoryLocation = "./LockedMe_documents";
         File f = new File("./LockedMe_documents");
         
-        while(userOption != 3)
+        while((userOption != 3) && (userInputOption == 'M'))
         {
             //User choices
             if (userOption == 1)
@@ -38,8 +39,31 @@ public class LockedMe
             }
             else if (userOption == 2)
             {
-                myUser.displayUserInteractionInformation();
-                userOption = myUser.getUserInput('S');
+                do
+                {
+                    userInputOption = 'S';
+                    myUser.displayUserInteractionInformation();
+                    userOption = myUser.getUserInput(userInputOption);
+                    
+                    if (userOption == 1)
+                    {
+                        System.out.print("Please put in the complete path for the file to copy : ");
+                        String fullPathOfFile = myUser.getFullPathOfFile();
+                        
+                        myUser.addFileToExistingDirectory(fullPathOfFile, directoryLocation);
+                        
+                        myUser.displayUserInteractionInformation();
+                        userOption = myUser.getUserInput(userInputOption);
+                        
+                        if (userOption == 4)
+                        {
+                            userInputOption = 'M';
+                        }
+                    }
+                    
+                }while(userInputOption == 'S');
+
+                
             }
             else
             {

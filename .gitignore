@@ -1,2 +1,6 @@
 /bin/
 /LockedMe_documents/
+./.DS_Store
+./src/.DS_Store
+./src/com/.DS_Store
+./src/com/LockedMe/.DS_Store
