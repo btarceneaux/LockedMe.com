@@ -270,4 +270,43 @@ public class User
                 
         return inputString;
     }
+    
+    
+    public void searchForUserFile()
+    {
+        boolean fileFound = false;
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        try
+        {
+            String inputString = br.readLine();
+            
+            String fullPath = ("LockedMe_documents" + "/" + inputString);
+            File f = new File(fullPath);
+            
+            String[] userFiles = getFilesInDirectory(f);
+            
+            for(int i = 0; i < userFiles.length; i++)
+            {
+                if(userFiles[i].equals(inputString))
+                {
+                    fileFound = true;
+                    break;
+                }
+            }
+            
+            if(fileFound == true)
+            {
+                System.out.println("The file exists in the direcotory.");
+            }
+            else
+            {
+                System.out.println("The file does not exist in the directory.");
+            }
+        } 
+        catch (IOException e)
+        {
+            System.out.println("An input exception has occured\n" + e);
+        }
+    }
 }

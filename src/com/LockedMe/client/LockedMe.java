@@ -55,13 +55,18 @@ public class LockedMe
                     }
                     else if (userOption == 2)
                     {
-                        System.out.println("Please enter the name of the file you want to delete : ");
+                        System.out.print("Please enter the name of the file you want to delete : ");
                         myUser.deleteUserSpecifiedFile();
+                    }
+                    else if (userOption == 3)
+                    {
+                        System.out.print("Please enter the file you want to search for : ");
+                        myUser.searchForUserFile();
                     }
                     else if (userOption == 4)
                     {
                         userInputOption = 'M';
-                        System.out.println("You entered 4");
+                        System.out.println("Now navigating back to the main menu.");
                         myUser.displayUserOptions();
                         userOption = myUser.getUserInput('M');
                     }
