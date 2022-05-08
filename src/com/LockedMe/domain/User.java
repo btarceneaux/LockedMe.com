@@ -9,14 +9,15 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.ListIterator;
 
 public class User
 {
 
     private int userInput;
-    
-    ArrayList<String> files = new ArrayList<String>();
     
     public User()
     {
@@ -41,6 +42,7 @@ public class User
     
     public void displayFilesInDirectory(File parmFile)
     {
+        ArrayList<String> files = new ArrayList<String>();
         String[] tempFiles = parmFile.list(null);
         
         // Add each file name to the array list
@@ -207,6 +209,7 @@ public class User
                        bufOutput.write(line);
                        bufOutput.newLine();
                    } 
+                   System.out.println("The file has been successfully added to the directory.");
                }
                catch (FileNotFoundException f)
                {
@@ -281,29 +284,27 @@ public class User
         {
             String inputString = br.readLine();
             
-            String fullPath = ("LockedMe_documents" + "/" + inputString);
-            File f = new File(fullPath);
+            // Let's try searching using binary search collections
+            File f = new File("LockedMe_documents/" + inputString);
             
-            String[] userFiles = getFilesInDirectory(f);
+            String[] contentsOfDirectory = getFilesInDirectory(f);
+            //ArrayList<String> allFiles = (ArrayList<String>) Arrays.asList(contentsOfDirectory);
+            List<String> allFiles = Arrays.asList(contentsOfDirectory);
             
-            for(int i = 0; i < userFiles.length; i++)
+            //Sort the collection of strings using a binary search.
+            Collections.sort(allFiles);
+            
+            int index = Collections.binarySearch(allFiles, inputString);
+            
+            if (index >= 0)
             {
-                if(userFiles[i].equals(inputString))
-                {
-                    fileFound = true;
-                    break;
-                }
-            }
-            
-            if(fileFound == true)
-            {
-                System.out.println("The file exists in the direcotory.");
+                System.out.println("The file exists in the direcotory and is file " + (index + 1) + " of " + (contentsOfDirectory.length));
             }
             else
             {
                 System.out.println("The file does not exist in the directory.");
             }
-        } 
+        }   
         catch (IOException e)
         {
             System.out.println("An input exception has occured\n" + e);

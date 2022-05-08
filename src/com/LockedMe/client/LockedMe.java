@@ -24,18 +24,19 @@ public class LockedMe
         char userInputOption = 'M';
         
         int userOption = myUser.getUserInput(userInputOption);
-        
         String directoryLocation = "./LockedMe_documents";
-        File f = new File("./LockedMe_documents");
         
         while((userOption != 3) && (userInputOption == 'M'))
         {
             //User choices
             if (userOption == 1)
             {
+                File f = new File("./LockedMe_documents");
+                
                 myUser.displayFilesInDirectory(f);
                 myUser.displayUserOptions();
                 userOption = myUser.getUserInput('M');
+                
             }
             else if (userOption == 2)
             {
