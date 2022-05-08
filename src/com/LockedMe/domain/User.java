@@ -241,7 +241,7 @@ public class User
         } 
         catch (IOException e)
         {
-            System.out.println("An exception has occured. : " + e);
+            System.out.println("An exception has occurred. : " + e);
         }
         
         if(inputString.length() != 0)
@@ -307,7 +307,7 @@ public class User
         }   
         catch (IOException e)
         {
-            System.out.println("An input exception has occured\n" + e);
+            System.out.println("An input exception has occurred\n" + e);
         }
     }
 }
